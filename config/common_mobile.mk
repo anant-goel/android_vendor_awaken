@@ -1,7 +1,6 @@
 # Inherit common mobile Awaken stuff
 $(call inherit-product, vendor/awaken/config/common.mk)
 
-ifneq ($(USE_GAPPS),true)
 # Default notification/alarm sounds
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.config.notification_sound=Argon.ogg \
@@ -14,7 +13,6 @@ PRODUCT_PACKAGES += \
     ExactCalculator \
     Jelly \
     Seedvault
-endif
 
 ifneq ($(TARGET_EXCLUDES_AUDIOFX),true)
 PRODUCT_PACKAGES += \
