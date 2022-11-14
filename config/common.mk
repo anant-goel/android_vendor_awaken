@@ -85,20 +85,16 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.control_privapp_permissions=enforce
 
 # Gapps
-ifeq ($(USE_GAPPS),true)
 $(call inherit-product-if-exists, vendor/gms/products/gms.mk)
-endif
 
 # Face Unlock
 TARGET_FACE_UNLOCK_SUPPORTED ?= true
-ifeq ($(TARGET_FACE_UNLOCK_SUPPORTED),true)
 PRODUCT_PACKAGES += \
     FaceUnlockService
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.face_unlock_service.enabled=$(TARGET_FACE_UNLOCK_SUPPORTED)
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.biometrics.face.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.hardware.biometrics.face.xml
-endif
 
 # Fonts
 include vendor/awaken/config/fonts.mk
@@ -116,12 +112,10 @@ PRODUCT_COPY_FILES += \
     vendor/awaken/prebuilt/common/etc/sysconfig/pixel_2016_exclusive.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_2016_exclusive.xml
 
 # Include AOSP audio files
-ifneq ($(USE_GAPPS),true)
 include vendor/awaken/config/aosp_audio.mk
 
 # Include Awaken audio files
 include vendor/awaken/config/awaken_audio.mk
-endif
 
 # Do not include art debug targets
 PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
@@ -161,10 +155,8 @@ PRODUCT_PACKAGES += \
     ThemePicker
 
 # Charger
-ifeq ($(USE_PIXEL_CHARGER),true)
 PRODUCT_PACKAGES += \
     product_charger_res_images
-endif
 
 # Config
 PRODUCT_PACKAGES += \
